@@ -17,8 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText etTexto, etPassword;
     private TextView tvTexto;
-    private Button btEncriptar, btDesEncriptar;
+    private Button btEncriptar, btDesEncriptar, btApiEncriptada;
     private String textoSalida;
+
+
+    String apiKeyEncriptada ="0SPrEK0JntQ2qCm9cPEabw==";
+    String passwordEncriptacion = "gdsawr";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,20 @@ public class MainActivity extends AppCompatActivity {
         etTexto = findViewById(R.id.mainActivityEtTexto);
         etPassword = findViewById(R.id.mainActivityEtPassword);
         tvTexto = findViewById(R.id.mainActivityTvTexto);
+
+        btApiEncriptada = findViewById(R.id.mainActivityBtApiEncriptada);
+        btApiEncriptada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    textoSalida = desencriptar(apiKeyEncriptada, passwordEncriptacion);
+                    tvTexto.setText(textoSalida);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
         btEncriptar = findViewById(R.id.mainActivityBtEncriptar);
         btEncriptar.setOnClickListener(new View.OnClickListener() {
             @Override
